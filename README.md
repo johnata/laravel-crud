@@ -1,4 +1,4 @@
-# CRUD de tasks em Laravel
+# CRUD em Laravel
 
 ## Criando projeto
 ```
