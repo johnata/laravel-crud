@@ -164,3 +164,6 @@ php artisan make:request TaskRequest
 ```
 composer require laravelcollective/html
 ```
+
+## Tailwind CSS
+* https://tailwindcss.com/docs/guides/laravel
