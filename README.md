@@ -48,6 +48,11 @@ php artisan make:controller HomeController
 php artisan make:controller UserController --resource
 ```
 
+## Criar Model
+```
+php artisan make:model User -m
+```
+
 ## Criar request User
 ```
 php artisan make:request UserRequest
