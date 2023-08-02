@@ -53,6 +53,55 @@ php artisan make:controller UserController --resource
 php artisan make:model User -m
 ```
 
+## Seed
+Criar
+```
+php artisan make:seeder UserSeeder
+```
+
+Exemplo
+```php
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        DB::table('users')->insert([
+            'uuid' => Str::uuid(),
+            'name' => Str::random(10),
+            'email' => Str::random(10).'@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+    }
+}
+```
+
+Executar
+```
+php artisan db:seed
+ 
+php artisan db:seed --class=UserSeeder
+```
+```
+php artisan migrate:fresh --seed
+ 
+php artisan migrate:fresh --seed --seeder=UserSeeder
+```
+```
+php artisan db:seed --force
+```
+
 ## Criar request User
 ```
 php artisan make:request UserRequest
