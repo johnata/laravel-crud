@@ -6,7 +6,7 @@ composer create-project laravel/laravel laravel-crud
 ```
 
 ## Configurar acesso ao banco de dados
-* deve colocar as credenciais de acesso no .env
+* é recomendado que as credenciais de acesso estejam no .env
 
 ### Testando a conexão
 ```
