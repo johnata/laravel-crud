@@ -24,11 +24,11 @@ class UserRequest extends FormRequest
         return ($this->isMethod('POST') ? $this->store() : $this->update());
     }
 
-
     protected function store()
     {
         return [
-            'name' => 'required|string|min:3|max:255',
+            'first_name' => 'required|string|min:3|max:255',
+            'last_name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ];
@@ -38,7 +38,8 @@ class UserRequest extends FormRequest
     {
         return [
             'id' => 'required',
-            'name' => 'required|string|min:3|max:255',
+            'first_name' => 'required|string|min:3|max:255',
+            'last_name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$this->all()['id'],
         ];
     }

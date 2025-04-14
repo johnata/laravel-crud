@@ -5,22 +5,38 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
+    /**
+     * Atributo que representa o modelo User.
+     * Este atributo é utilizado para interagir com a tabela de usuários no banco de dados.
+     *
+     * @var User
+     */
     public readonly User $user;
+
+    /**
+     * Construtor da classe UserController.
+     * Este construtor inicializa o modelo User e chama o construtor da classe pai.
+     *
+     * @return void
+     */
     public function __construct()
     {
+        // Chama o construtor da classe pai
+        parent::__construct();
         $this->user = new User();
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->user->all();
-        return view('users/index', ['users' => $users]);
+        $users = $this->user->latest()->paginate(10);
+        return view('pages.users/index', compact('users'));
     }
 
     /**
@@ -28,7 +44,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users/form');
+        return view('pages.users/form');
     }
 
     /**
@@ -51,7 +67,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users/show', ['user' => $user]);
+        return view('pages.users/show', ['user' => $user]);
     }
 
     /**
@@ -59,7 +75,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users/form', ['user' => $user]);
+        return view('pages.users/form', ['user' => $user]);
     }
 
     /**

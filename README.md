@@ -1,16 +1,21 @@
-# CRUD em Laravel
-Projeto de um CRUD básico
+# CRUD - Laravel
 
-## Principais comandos
-Aqui tem os principais comandos para criar um projeto em Laravel
+## Git Clone
 
-### Criando projeto
-```
-composer create-project laravel/laravel laravel-crud
+```bash
+git clone git@github.com:johnata/laravel-crud.git
 ```
 
-### Configurar acesso ao banco de dados
+## .env
+
+```bash
+cp .env.example .env
+```
+
+## Configurar acesso ao banco de dados
+
 É recomendado que as credenciais de acesso estejam no .env, exemplo:
+
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -20,16 +25,53 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-#### Testar a conexão
+## Composer
+
+```bash
+composer install
+```
+
+## Migrate and Seed
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+## FakeUserSeeder
+
+```bash
+php artisan db:seed --class=FakeUserSeeder
+```
+
+## Server
+
+```bash
+php artisan serve
+```
+
+## Principais comandos
+
+Aqui tem os principais comandos para criar um projeto em Laravel
+
+### Criando projeto
+
+```bash
+composer create-project laravel/laravel laravel-crud
+```
+
+#### Testar a conexão com banco de dados
+
 php artisan tinker
 Para testar se as configurações estão corretaa, teste com o tinker:
-```
+
+```bash
 php artisan tinker
 DB::connection()->getPdo();
 ```
+
 Tem que retornar um PDO:
 
-```
+```bash
 PDO {#6220
     inTransaction: false,
     attributes: {
@@ -53,38 +95,44 @@ PDO {#6220
 ```
 
 ### Criar controller
-```
+
+```bash
 php artisan make:controller HomeController
 ```
-####  Para criar com os metodos de um CRUD utilize:
 
-```
+#### Para criar com os metodos de um CRUD utilize:
+
+```bash
 php artisan make:controller UserController --resource
 ```
-Será criado o controller com os métodos:
-| Método         | Ação                              | Uso                                |
-|----------------|-----------------------------------|------------------------------------|
-| `index()`      | Exibir uma lista de recursos      | Mostrar todos os usuários.         |
-| `create()`     | Mostrar formulário de criação     | Formulário para criar novo usuário. |
-| `store()`      | Salvar um recurso recém-criado    | Processar e salvar os dados do novo usuário. |
-| `show($id)`    | Exibir um recurso específico      | Mostrar detalhes de um usuário específico. |
-| `edit($id)`    | Mostrar formulário de edição      | Formulário para editar um usuário existente. |
-| `update($id)`  | Atualizar um recurso específico   | Processar e salvar mudanças feitas no usuário. |
-| `destroy($id)` | Remover um recurso específico     | Excluir um usuário.                |
 
+Será criado o controller com os métodos:
+| Método | Ação | Uso |
+|----------------|-----------------------------------|------------------------------------|
+| `index()` | Exibir uma lista de recursos | Mostrar todos os usuários. |
+| `create()` | Mostrar formulário de criação | Formulário para criar novo usuário. |
+| `store()` | Salvar um recurso recém-criado | Processar e salvar os dados do novo usuário. |
+| `show($id)` | Exibir um recurso específico | Mostrar detalhes de um usuário específico. |
+| `edit($id)` | Mostrar formulário de edição | Formulário para editar um usuário existente. |
+| `update($id)` | Atualizar um recurso específico | Processar e salvar mudanças feitas no usuário. |
+| `destroy($id)` | Remover um recurso específico | Excluir um usuário. |
 
 ### Criar Model
-```
+
+```bash
 php artisan make:model User -m
 ```
 
 ### Seed
+
 Criar
-```
+
+```bash
 php artisan make:seeder UserSeeder
 ```
 
 Exemplo
+
 ```php
 <?php
 
@@ -113,45 +161,56 @@ class UserSeeder extends Seeder
 ```
 
 Executar
-```
+
+```bash
 php artisan db:seed
- 
+
 php artisan db:seed --class=UserSeeder
 ```
-```
+
+```bash
 php artisan migrate:fresh --seed
- 
+
 php artisan migrate:fresh --seed --seeder=UserSeeder
 ```
-```
+
+```bash
 php artisan db:seed --force
 ```
 
 ### Criar request User
-```
+
+```bash
 php artisan make:request UserRequest
 ```
 
-* Controller (task)
-* Model
-* Observer (para criar/incrementar UUID)
-* tailwind
+-   Controller (task)
+-   Model
+-   Observer (para criar/incrementar UUID)
+-   tailwind
+
 ### Outros comandos
+
 #### Recriar todo banco de dados
-```
+
+```bash
 php artisan migrate:fresh
 ```
 
 #### Listar rotas
-```
+
+```bash
 php artisan route:list
 ```
 
 #### Criar observer
-```
+
+```bash
 php artisan make:observer UserObserver --model=User
 ```
+
 Alterar observer:
+
 ```php
 namespace App\Observers;
 
@@ -167,6 +226,7 @@ class UserObserver
     }
 }
 ```
+
 Incluir no app\Providers\AppServiceProvider.php:
 
 ```php
@@ -180,15 +240,19 @@ Incluir no app\Providers\AppServiceProvider.php:
     }
     ...
 ```
+
 #### Criar request
-```
+
+```bash
 php artisan make:request TaskRequest
 ```
 
 #### Instalar laravel collective
-```
+
+```bash
 composer require laravelcollective/html
 ```
 
 ### Tailwind CSS
-* https://tailwindcss.com/docs/guides/laravel
+
+-   https://tailwindcss.com/docs/guides/laravel
